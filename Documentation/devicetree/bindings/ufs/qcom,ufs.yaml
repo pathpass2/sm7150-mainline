@@ -36,6 +36,7 @@ properties:
           - qcom,sm6115-ufshc
           - qcom,sm6125-ufshc
           - qcom,sm6350-ufshc
+          - qcom,sm7150-ufshc
           - qcom,sm8150-ufshc
           - qcom,sm8250-ufshc
           - qcom,sm8350-ufshc
@@ -122,6 +123,7 @@ allOf:
           contains:
             enum:
               - qcom,sc7180-ufshc
+              - qcom,sm7150-ufshc
     then:
       properties:
         clocks:
