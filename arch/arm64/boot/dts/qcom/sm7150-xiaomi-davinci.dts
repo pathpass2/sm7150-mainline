@@ -15,6 +15,7 @@
 /delete-node/ &ipa_fw_mem;
 /delete-node/ &ipa_gsi_mem;
 /delete-node/ &gpu_mem;
+/delete-node/ &tz_mem;
 /* The NFC reset-gpio is shared with the pinctrl of the amplifier. Disable NFC so that audio works. */
 /delete-node/ &nxp;
 
@@ -51,6 +52,11 @@
 	};
 
 	reserved-memory {
+		tz_mem: trust-zone@86200000 {
+			reg = <0x0 0x86200000 0x0 0x4900000>;
+			no-map;
+		};
+
 		wlan_msa_mem: wlan_msa@97d00000 {
 			reg = <0x0 0x97d00000 0x0 0x180000>;
 			no-map;
