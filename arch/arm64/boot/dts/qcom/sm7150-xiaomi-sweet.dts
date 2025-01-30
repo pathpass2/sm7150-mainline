@@ -76,8 +76,41 @@
 	clock-frequency = <100000>;
 	status = "okay";
 
-	/* awinic,aw882xx (speaker amplifier) @ 34 */
-	/* awinic,aw882xx (speaker amplifier) @ 35 */
+        aw88261_t: audio-codec@34 {
+		compatible = "awinic,aw88261";
+		reg = <0x34>;
+
+		reset-gpios = <&tlmm 64 GPIO_ACTIVE_HIGH>;
+		irq-gpio = <&tlmm 93 GPIO_ACTIVE_HIGH>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&amp_t_int_default>;
+
+		awinic,audio-channel = <0>;
+		awinic,sync-flag;
+
+		sound-name-prefix = "Top Speaker";
+		#sound-dai-cells = <0>;
+        };
+
+	/* Driver is struggling with GPIOs (requests 56 for both top and bottom???)
+	aw88261_b: audio-codec@35 {
+		compatible = "awinic,aw88261";
+		reg = <0x35>;
+
+		reset-gpios = <&tlmm 72 GPIO_ACTIVE_HIGH>;
+		irq-gpio = <&tlmm 56 GPIO_ACTIVE_HIGH>;
+
+		pinctrl-names = "default";
+		pinctrl-0 = <&amp_b_int_default>;
+
+		awinic,audio-channel = <1>;
+		awinic,sync-flag;
+
+		sound-name-prefix = "Bottom Speaker";
+		#sound-dai-cells = <0>;
+        };
+	*/
 };
 
 &i2c7 {
@@ -163,6 +196,19 @@
 	compatible = "mdss,k6-38-0c-0a-dsc";
 };
 
+&q6afedai {
+	qi2s@16 {
+		reg = <PRIMARY_MI2S_RX>;
+		qcom,sd-lines = <0>;
+	};
+};
+
+&q6asmdai {
+	dai@0 {
+		reg = <0>;
+	};
+};
+
 &remoteproc_adsp {
 	firmware-name = "qcom/sm7150/sweet/adsp.mbn";
 };
@@ -177,6 +223,53 @@
 
 &sdhc_2 {
 	status = "okay";
+};
+
+&sound {
+	compatible = "qcom,sm8250-sndcard";
+	pinctrl-0 = <&pri_mi2s_active &pri_mi2s_ws_active>;
+	pinctrl-names = "default";
+	model = "Redmi Note 10 Pro";
+
+	mm1-dai-link {
+		link-name = "MultiMedia1";
+		cpu {
+			sound-dai = <&q6asmdai MSM_FRONTEND_DAI_MULTIMEDIA1>;
+		};
+	};
+
+	speaker_playback_dai {
+		link-name = "Primary Spkr Playback";
+		cpu {
+			sound-dai = <&q6afedai PRIMARY_MI2S_RX>;
+		};
+
+		platform {
+			sound-dai = <&q6routing>;
+		};
+
+		codec {
+			sound-dai = <&aw88261_t>;
+		};
+	};
+};
+
+&tlmm {
+	amp_t_int_default: amp-l-int-default-state {
+		pins = "gpio93";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-pull-up;
+		input-enable;
+	};
+
+	amp_b_int_default: amp-l-int-default-state {
+		pins = "gpio56";
+		function = "gpio";
+		drive-strength = <2>;
+		bias-pull-up;
+		input-enable;
+	};
 };
 
 &venus {
