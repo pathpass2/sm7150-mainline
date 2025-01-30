@@ -411,6 +411,7 @@ enum {
 };
 
 enum aw88261_id {
+	WHATEVER_CHIP_ID = 0x2032,
 	AW88261_CHIP_ID = 0x2113,
 };
 
