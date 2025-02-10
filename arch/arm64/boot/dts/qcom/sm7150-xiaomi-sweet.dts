@@ -14,6 +14,7 @@
 /delete-node/ &ipa_fw_mem;
 /delete-node/ &ipa_gsi_mem;
 /delete-node/ &gpu_mem;
+/delete-node/ &tz_mem;
 
 &adsp_mem {
 	reg = <0x0 0x95700000 0x0 0x2600000>;
@@ -26,6 +27,11 @@
 	qcom,board-id = <46 0>;
 
 	reserved-memory {
+		tz_mem: trust-zone@86200000 {
+			reg = <0x0 0x86200000 0x0 0x4900000>;
+			no-map;
+		};
+
 		wlan_msa_mem: wlan@97d00000 {
 			reg = <0x0 0x97d00000 0x0 0x180000>;
 			no-map;
