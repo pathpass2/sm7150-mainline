@@ -11,7 +11,6 @@
 #include <dt-bindings/clock/qcom,sm7150-dispcc.h>
 #include <dt-bindings/clock/qcom,sm7150-gcc.h>
 #include <dt-bindings/clock/qcom,sm7150-videocc.h>
-#include <dt-bindings/clock/qcom,sm8250-lpass-aoncc.h>
 #include <dt-bindings/dma/qcom-gpi.h>
 #include <dt-bindings/interconnect/qcom,icc.h>
 #include <dt-bindings/interconnect/qcom,osm-l3.h>
@@ -4490,17 +4489,6 @@
 			status = "disabled";
 		};
 
-		aoncc: clock-controller@3380000 {
-			compatible = "qcom,sm7150-lpass-aoncc",
-				     "qcom,sm8250-lpass-aoncc";
-			reg = <0 0x03380000 0 0x40000>;
-			#clock-cells = <1>;
-			clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_CLK_ID_TX_CORE_NPL_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-			clock-names = "core", "audio", "bus";
-		};
-
 		txmacro: txmacro@62ec0000 {
 			compatible = "qcom,sm7150-lpass-tx-macro",
 				     "qcom,sm8250-lpass-tx-macro";
@@ -4555,8 +4543,8 @@
 				     "qcom,sm8250-lpass-rx-macro";
 			reg = <0 0x62ee0000 0 0x1000>;
 
-			clocks = <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+			clocks = <&q6afecc LPASS_CLK_ID_RX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+				 <&q6afecc LPASS_CLK_ID_RX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&vamacro>;
@@ -4603,7 +4591,7 @@
 				     "qcom,sm8250-lpass-va-macro";
 			reg = <0 0x62f20000 0 0x1000>;
 
-			clocks = <&aoncc LPASS_CDC_VA_MCLK>,
+			clocks = <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
 			clock-names = "mclk", "macro", "dcodec";

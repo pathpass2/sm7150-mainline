@@ -683,6 +683,10 @@
 	status = "okay";
 };
 
+&rxmacro {
+	status = "okay";
+};
+
 &sdhc_2 {
 	cd-gpios = <&tlmm 69 GPIO_ACTIVE_HIGH>;
 
@@ -858,6 +862,10 @@
 	};
 };
 
+&txmacro {
+	status = "okay";
+};
+
 &uart3 {
 	/delete-property/interrupts;
 	interrupts-extended = <&intc GIC_SPI 604 IRQ_TYPE_LEVEL_HIGH>,
@@ -917,6 +925,10 @@
 	vdd-supply = <&vdd_usb_hs_core>;
 	vdda-pll-supply = <&vdda_usb_hs_1p8>;
 	vdda-phy-dpdm-supply = <&vdda_usb_hs_3p1>;
+	status = "okay";
+};
+
+&vamacro {
 	status = "okay";
 };
 

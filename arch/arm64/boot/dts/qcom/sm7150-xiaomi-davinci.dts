@@ -389,18 +389,6 @@
 	firmware-name = "qcom/sm7150/davinci/modem.mbn";
 };
 
-&rxmacro {
-	status = "okay";
-};
-
-&txmacro {
-	status = "okay";
-};
-
-&vamacro {
-	status = "okay";
-};
-
 &sound {
 	compatible = "qcom,sm8250-sndcard";
 	pinctrl-0 = <&pri_mi2s_active &pri_mi2s_ws_active>;
