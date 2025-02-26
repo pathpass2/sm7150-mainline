@@ -88,8 +88,9 @@ static int clk_vote_q6dsp_block(struct clk_hw *hw)
 	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
 	struct q6dsp_cc *cc = dev_get_drvdata(clk->dev);
 
-	return cc->desc->lpass_vote_clk(clk->dev, clk->q6dsp_clk_id,
-				  clk_hw_get_name(&clk->hw), &clk->handle);
+	return 0;
+	//return cc->desc->lpass_vote_clk(clk->dev, clk->q6dsp_clk_id,
+	//			  clk_hw_get_name(&clk->hw), &clk->handle);
 }
 
 static void clk_unvote_q6dsp_block(struct clk_hw *hw)
@@ -97,7 +98,7 @@ static void clk_unvote_q6dsp_block(struct clk_hw *hw)
 	struct q6dsp_clk *clk = to_q6dsp_clk(hw);
 	struct q6dsp_cc *cc = dev_get_drvdata(clk->dev);
 
-	cc->desc->lpass_unvote_clk(clk->dev, clk->q6dsp_clk_id, clk->handle);
+	//cc->desc->lpass_unvote_clk(clk->dev, clk->q6dsp_clk_id, clk->handle);
 }
 
 static const struct clk_ops clk_vote_q6dsp_ops = {
