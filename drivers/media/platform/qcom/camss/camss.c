@@ -1061,13 +1061,13 @@ static const struct camss_subdev_resources csid_res_7150[] = {
 		.regulators = { "vdda-phy", "vdda-pll" },
 		.clock = { "cphy_rx_src", "vfe0_axi", "vfe0", "vfe0_src",
 			   "vfe0_cphy_rx", "vfe0_csid", "vfe0_csid_src", },
-		.clock_rate = { { /*19200000,*/ 300000000, 384000000, 400000000, },		/* ftbl_cam_cc_cphy_rx_clk_src */
+		.clock_rate = { { 19200000, 300000000, 384000000, 400000000, },		/* ftbl_cam_cc_cphy_rx_clk_src */
 				{ 0 },								/* on/off only */
-				{ /*19200000,*/ 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
-				{ /*19200000,*/ 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
-				{ /*19200000,*/ 300000000, 38400000, 400000000 },		/* ftbl_camcc_cphy_rx_clk_src */
-				{ /*19200000,*/ 75000000, 300000000, 384000000, 400000000 },	/* ftbl_cam_cc_ife_0_csid_clk_src */
-				{ /*19200000,*/ 75000000, 300000000, 384000000, 400000000 } },	/* ftbl_cam_cc_ife_0_csid_clk_src */
+				{ 19200000, 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
+				{ 19200000, 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
+				{ 19200000, 300000000, 38400000, 400000000 },		/* ftbl_camcc_cphy_rx_clk_src */
+				{ 19200000, 75000000, 300000000, 384000000, 400000000 },	/* ftbl_cam_cc_ife_0_csid_clk_src */
+				{ 19200000, 75000000, 300000000, 384000000, 400000000 } },	/* ftbl_cam_cc_ife_0_csid_clk_src */
 		.reg = { "csid0" },
 		.interrupt = { "csid0" },
 		.csid = {
@@ -1081,13 +1081,13 @@ static const struct camss_subdev_resources csid_res_7150[] = {
 		.regulators = { "vdda-phy", "vdda-pll" },
 		.clock = { "cphy_rx_src", "vfe0_axi", "vfe1", "vfe1_src",
 			   "vfe1_cphy_rx", "vfe1_csid", "vfe0_csid_src", },
-		.clock_rate = { { /*19200000,*/ 300000000, 384000000, 400000000, },		/* ftbl_cam_cc_cphy_rx_clk_src */
+		.clock_rate = { { 19200000, 300000000, 384000000, 400000000, },		/* ftbl_cam_cc_cphy_rx_clk_src */
 				{ 0 },								/* on/off only */
-				{ /*19200000,*/ 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
-				{ /*19200000,*/ 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
-				{ /*19200000,*/ 300000000, 38400000, 400000000 },		/* ftbl_camcc_cphy_rx_clk_src */
-				{ /*19200000,*/ 75000000, 300000000, 384000000, 400000000 },	/* ftbl_cam_cc_ife_0_csid_clk_src */
-				{ /*19200000,*/ 75000000, 300000000, 384000000, 400000000 } },	/* ftbl_cam_cc_ife_0_csid_clk_src */
+				{ 19200000, 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
+				{ 19200000, 380000000, 510000000, 637000000, 760000000 },	/* ftbl_cam_cc_ife_0_clk_src */
+				{ 19200000, 300000000, 38400000, 400000000 },		/* ftbl_camcc_cphy_rx_clk_src */
+				{ 19200000, 75000000, 300000000, 384000000, 400000000 },	/* ftbl_cam_cc_ife_0_csid_clk_src */
+				{ 19200000, 75000000, 300000000, 384000000, 400000000 } },	/* ftbl_cam_cc_ife_0_csid_clk_src */
 		.reg = { "csid1" },
 		.interrupt = { "csid1" },
 		.csid = {

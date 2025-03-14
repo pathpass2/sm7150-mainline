@@ -416,9 +416,11 @@ int vfe_reset(struct vfe_device *vfe)
 	time = wait_for_completion_timeout(&vfe->reset_complete,
 		msecs_to_jiffies(VFE_RESET_TIMEOUT_MS));
 	if (!time) {
-		dev_err(vfe->camss->dev, "VFE reset timeout\n");
+		dev_err(vfe->camss->dev, "VFE reset timeout (irq name: %s)\n", vfe->irq_name);
 		return -EIO;
 	}
+
+	pr_info("VFE reset successfully (irq name: %s)\n", vfe->irq_name);
 
 	return 0;
 }
@@ -787,6 +789,8 @@ int vfe_get(struct vfe_device *vfe)
 {
 	int ret;
 
+	pr_info("vfe_get called\n");
+
 	mutex_lock(&vfe->power_lock);
 
 	if (vfe->power_count == 0) {
@@ -824,6 +828,8 @@ int vfe_get(struct vfe_device *vfe)
 	vfe->power_count++;
 
 	mutex_unlock(&vfe->power_lock);
+	
+	pr_info("vfe_get (irq name: %s) return 0\n", vfe->irq_name);
 
 	return 0;
 
@@ -847,6 +853,7 @@ error_pm_domain:
  */
 void vfe_put(struct vfe_device *vfe)
 {
+	pr_info("vfe_put called\n");
 	mutex_lock(&vfe->power_lock);
 
 	if (vfe->power_count == 0) {
@@ -921,12 +928,14 @@ static int vfe_set_power(struct v4l2_subdev *sd, int on)
 	struct vfe_device *vfe = to_vfe(line);
 	int ret;
 
+	pr_info("vfe_set_power called, on=%d\n", on);
+
 	if (on) {
 		ret = vfe_get(vfe);
 		if (ret < 0)
 			return ret;
 	} else {
-		vfe_put(vfe);
+		//vfe_put(vfe);
 	}
 
 	return 0;

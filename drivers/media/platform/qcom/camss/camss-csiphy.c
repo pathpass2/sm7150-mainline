@@ -210,6 +210,8 @@ static int csiphy_set_power(struct v4l2_subdev *sd, int on)
 	struct csiphy_device *csiphy = v4l2_get_subdevdata(sd);
 	struct device *dev = csiphy->camss->dev;
 
+	pr_info("csiphy_set_power on=%d\n", on);
+
 	if (on) {
 		int ret;
 
@@ -246,13 +248,13 @@ static int csiphy_set_power(struct v4l2_subdev *sd, int on)
 
 		csiphy->res->hw_ops->hw_version_read(csiphy, dev);
 	} else {
-		disable_irq(csiphy->irq);
+		//disable_irq(csiphy->irq);
 
-		camss_disable_clocks(csiphy->nclocks, csiphy->clock);
+		//camss_disable_clocks(csiphy->nclocks, csiphy->clock);
 
-		regulator_bulk_disable(csiphy->num_supplies, csiphy->supplies);
+		//regulator_bulk_disable(csiphy->num_supplies, csiphy->supplies);
 
-		pm_runtime_put_sync(dev);
+		//pm_runtime_put_sync(dev);
 	}
 
 	return 0;

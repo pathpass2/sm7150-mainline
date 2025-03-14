@@ -347,6 +347,8 @@ static irqreturn_t vfe_isr(int irq, void *dev)
 	u32 status0, status1, vfe_bus_status[VFE_LINE_NUM_MAX];
 	int i, wm;
 
+	pr_info("VFE ISR called, irq=%d\n", irq);
+
 	status0 = readl_relaxed(vfe->base + VFE_IRQ_STATUS_0);
 	status1 = readl_relaxed(vfe->base + VFE_IRQ_STATUS_1);
 
@@ -364,8 +366,12 @@ static irqreturn_t vfe_isr(int irq, void *dev)
 	writel_relaxed(CMD_GLOBAL_CLEAR, vfe->base + VFE_IRQ_CMD);
 	writel_relaxed(1, vfe->base + VFE_BUS_IRQ_CLEAR_GLOBAL);
 
-	if (status0 & STATUS_0_RESET_ACK)
+	pr_info("VFE ISR status0=%u\n", status0);
+
+	if (status0 & STATUS_0_RESET_ACK) {
+		pr_info("VFE reset acked\n");
 		vfe->isr_ops.reset_ack(vfe);
+	}
 
 	for (i = VFE_LINE_RDI0; i < vfe->res->line_num; i++)
 		if (status0 & STATUS_0_RDI_REG_UPDATE(i))
