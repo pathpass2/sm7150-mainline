@@ -283,3 +283,7 @@
 &venus {
 	firmware-name = "qcom/sm7150/sweet/venus.mbn";
 };
+
+&wifi {
+	qcom,ath10k-calibration-variant = "xiaomi_sweet";
+};

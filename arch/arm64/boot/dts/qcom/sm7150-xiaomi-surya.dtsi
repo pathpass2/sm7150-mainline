@@ -460,3 +460,7 @@
 	regulator-min-microvolt = <1696000>;
 	regulator-max-microvolt = <1904000>;
 };
+
+&wifi {
+	qcom,ath10k-calibration-variant = "xiaomi_surya";
+};

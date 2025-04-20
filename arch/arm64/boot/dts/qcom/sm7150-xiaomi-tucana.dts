@@ -486,3 +486,7 @@
 &venus {
 	firmware-name = "qcom/sm7150/tucana/venus.mbn";
 };
+
+&wifi {
+	qcom,ath10k-calibration-variant = "xiaomi_tucana";
+};
