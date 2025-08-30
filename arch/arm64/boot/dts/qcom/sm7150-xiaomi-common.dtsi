@@ -116,7 +116,7 @@
 	wcd937x: audio-codec {
 		compatible = "qcom,wcd9375-codec";
 
-		reset-gpios = <&lpass_tlmm 6 GPIO_ACTIVE_LOW>;
+		reset-gpios = <&lpass_tlmm 24 GPIO_ACTIVE_LOW>;
 		pinctrl-0 = <&wcd9375_reset_active>;
 		pinctrl-1 = <&wcd9375_reset_sleep>;
 		pinctrl-names = "default", "sleep";

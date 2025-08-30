@@ -1717,6 +1717,8 @@ int ufs_qcom_testbus_config(struct ufs_qcom_host *host)
 
 static void ufs_qcom_dump_testbus(struct ufs_hba *hba)
 {
+	return;
+
 	struct ufs_qcom_host *host = ufshcd_get_variant(hba);
 	int i, j, nminor = 0, testbus_len = 0;
 	u32 *testbus __free(kfree) = NULL;
@@ -1796,6 +1798,8 @@ static void ufs_qcom_dump_mcq_hci_regs(struct ufs_hba *hba)
 
 static void ufs_qcom_dump_dbg_regs(struct ufs_hba *hba)
 {
+	return;
+
 	u32 reg;
 	struct ufs_qcom_host *host;
 

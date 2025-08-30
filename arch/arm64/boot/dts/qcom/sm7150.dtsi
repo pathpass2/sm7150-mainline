@@ -4580,9 +4580,8 @@
 			clocks = <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&q6afecc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&vamacro>;
-			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+			clock-names = "mclk", "npl", "macro", "fsgen";
 
 			pinctrl-names = "default";
 			pinctrl-0 = <&tx_swr_active>;
@@ -4626,12 +4625,11 @@
 				     "qcom,sm8250-lpass-rx-macro";
 			reg = <0 0x62ee0000 0 0x1000>;
 
-			clocks = <&q6afecc LPASS_CLK_ID_RX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_CLK_ID_RX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+			clocks = <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+				 <&q6afecc LPASS_CLK_ID_TX_CORE_NPL_MCLK  LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
 				 <&vamacro>;
-			clock-names = "mclk", "npl", "macro", "dcodec", "fsgen";
+			clock-names = "mclk", "npl", "macro", "fsgen";
 
 			pinctrl-names = "default";
 			pinctrl-0 = <&rx_swr_active>;
@@ -4675,44 +4673,45 @@
 			reg = <0 0x62f20000 0 0x1000>;
 
 			clocks = <&q6afecc LPASS_CLK_ID_TX_CORE_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
-				 <&q6afecc LPASS_HW_DCODEC_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
-			clock-names = "mclk", "macro", "dcodec";
+				 <&q6afecc LPASS_CLK_ID_TX_CORE_NPL_MCLK LPASS_CLK_ATTRIBUTE_COUPLE_NO>,
+				 <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
+			clock-names = "mclk", "npl", "macro";
 
 			#clock-cells = <0>;
 			clock-output-names = "fsgen";
 			#sound-dai-cells = <1>;
 		};
 
-		lpass_tlmm: pinctrl@62b52000 {
+		lpass_tlmm: pinctrl@62b40000 {
 			compatible = "qcom,sm7150-lpass-lpi-pinctrl";
-			/* SSC range: <0 0x62b40000 0 0x12000> */
-			reg = <0 0x62b52000 0 0xe000>;
+			reg = <0 0x62b40000 0 0x20000>,
+			      <0 0x62b6f000 0 0x8>;
+			      //<0 0x62b65000 0 0x1000>;
 
 			clocks = <&q6afecc LPASS_HW_MACRO_VOTE LPASS_CLK_ATTRIBUTE_COUPLE_NO>;
 			clock-names = "core";
 
 			gpio-controller;
 			#gpio-cells = <2>;
-			gpio-ranges = <&lpass_tlmm 0 0 14>;
+			gpio-ranges = <&lpass_tlmm 0 0 32>;
 
 			tx_swr_active: tx-swr-active-state {
 				clk-pins {
-					pins = "gpio0";
+					pins = "gpio18";
 					function = "swr_tx_clk";
 					drive-strength = <8>;
 					bias-bus-hold;
 				};
 
 				data1-pins {
-					pins = "gpio1";
+					pins = "gpio19";
 					function = "swr_tx_data";
 					drive-strength = <8>;
 					bias-bus-hold;
 				};
 
 				data2-pins {
-					pins = "gpio2";
+					pins = "gpio20";
 					function = "swr_tx_data";
 					drive-strength = <8>;
 					bias-bus-hold;
@@ -4721,21 +4720,21 @@
 
 			tx_swr_sleep: tx-swr-sleep-state {
 				clk-pins {
-					pins = "gpio0";
+					pins = "gpio18";
 					function = "swr_tx_clk";
 					drive-strength = <2>;
 					bias-bus-hold;
 				};
 
 				data1-pins {
-					pins = "gpio1";
+					pins = "gpio19";
 					function = "swr_tx_data";
 					drive-strength = <2>;
 					bias-bus-hold;
 				};
 
 				data2-pins {
-					pins = "gpio2";
+					pins = "gpio20";
 					function = "swr_tx_data";
 					drive-strength = <2>;
 					bias-bus-hold;
@@ -4744,14 +4743,14 @@
 
 			rx_swr_active: rx-swr-active-state {
 				clk-pins {
-					pins = "gpio3";
+					pins = "gpio21";
 					function = "swr_rx_clk";
 					drive-strength = <8>;
 					bias-bus-hold;
 				};
 
 				data-pins {
-					pins = "gpio4", "gpio5";
+					pins = "gpio22", "gpio23";
 					function = "swr_rx_data";
 					drive-strength = <8>;
 					bias-bus-hold;
@@ -4761,14 +4760,14 @@
 
 			rx_swr_sleep: rx-swr-sleep-state {
 				clk-pins {
-					pins = "gpio3";
+					pins = "gpio21";
 					function = "swr_rx_clk";
 					drive-strength = <2>;
 					bias-bus-hold;
 				};
 
 				data-pins {
-					pins = "gpio4", "gpio5";
+					pins = "gpio22", "gpio23";
 					function = "swr_rx_data";
 					drive-strength = <2>;
 					bias-bus-hold;
@@ -4776,14 +4775,14 @@
 			};
 
 			wcd9375_reset_active: wcd9375-reset-active-state {
-				pins = "gpio6";
+				pins = "gpio24";
 				function = "cdc_pdm_rx";
 				drive-strength = <16>;
 				output-high;
 			};
 
 			wcd9375_reset_sleep: wcd9375-reset-sleep-state {
-				pins = "gpio6";
+				pins = "gpio24";
 				function = "cdc_pdm_rx";
 				drive-strength = <16>;
 				bias-disable;
@@ -4792,14 +4791,14 @@
 
 			dmic01_active: dmic01-active-state {
 				clk-pins {
-					pins = "gpio8";
+					pins = "gpio26";
 					function = "dmic1_clk";
 					drive-strength = <8>;
 					output-high;
 				};
 
 				data-pins {
-					pins = "gpio9";
+					pins = "gpio27";
 					function = "dmic1_data";
 					drive-strength = <8>;
 					input-enable;
@@ -4808,14 +4807,14 @@
 
 			dmic01_sleep: dmic01-sleep-state {
 				clk-pins {
-					pins = "gpio8";
+					pins = "gpio26";
 					function = "dmic1_clk";
 					drive-strength = <2>;
 					bias-disable;
 				};
 
 				data-pins {
-					pins = "gpio9";
+					pins = "gpio27";
 					function = "dmic1_data";
 					drive-strength = <2>;
 					pull-down;
@@ -4825,14 +4824,14 @@
 
 			dmic23_active: dmic23-active-state {
 				clk-pins {
-					pins = "gpio10";
+					pins = "gpio28";
 					function = "dmic2_clk";
 					drive-strength = <8>;
 					output-high;
 				};
 
 				data-pins {
-					pins = "gpio11";
+					pins = "gpio29";
 					function = "dmic2_data";
 					drive-strength = <8>;
 					input-enable;
@@ -4841,7 +4840,7 @@
 
 			dmic23_sleep: dmic23-sleep-state {
 				clk-pins {
-					pins = "gpio10";
+					pins = "gpio28";
 					function = "dmic2_clk";
 					drive-strength = <2>;
 					bias-disable;
@@ -4849,7 +4848,7 @@
 				};
 
 				data-pins {
-					pins = "gpio11";
+					pins = "gpio29";
 					function = "dmic2_data";
 					drive-strength = <2>;
 					pull-down;
