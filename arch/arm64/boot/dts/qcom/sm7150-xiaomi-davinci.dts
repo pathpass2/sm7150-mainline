@@ -46,6 +46,10 @@
 		regulator-min-microvolt = <6000000>;
 		regulator-max-microvolt = <6000000>;
 	};
+	chosen {
+    		bootargs = "console=ttyMSM0,115200n8 earlycon=msm_serial_dm,0xa88000,115200n8";
+	};
+
 
 	vreg_lab: regulator-lab {
 		compatible = "regulator-fixed";
@@ -384,7 +388,7 @@
 
 &q6asmdai {
 	dai@0 {
-		reg = <MSM_FRONTEND_DAI_MULTIMEDIA1>;
+		reg = <0>;
 	};
 };
 
@@ -576,3 +580,9 @@
 &wifi {
 	qcom,ath10k-calibration-variant = "xiaomi_davinci";
 };
+&uart8 {
+    status = "okay";
+    pinctrl-names = "default";
+    pinctrl-0 = <&qup_uart8_default>;
+};
+
