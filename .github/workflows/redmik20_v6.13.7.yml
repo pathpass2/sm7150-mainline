@@ -1,4 +1,4 @@
-name: Build redmik20
+name: Build redmik20_v6.13.7
 
 on:
   workflow_dispatch:
