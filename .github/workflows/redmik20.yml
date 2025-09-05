@@ -6,7 +6,7 @@ on:
       target_tag:
         description: 'Source tag to build from'
         required: true
-        default: 'redmik20_sm7150_v6.16.0'
+        default: 'v6.17'
                 
 env:
   ARCH: arm64
