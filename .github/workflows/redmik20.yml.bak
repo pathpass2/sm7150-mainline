@@ -285,16 +285,10 @@ jobs:
       - name: Compression firmware
         run: |
           cd   ${{ env.src_path }}
-          if [[ -d redmik20-firmware ]]; then
-            mv redmik20-firmware firmware
-          fi
-          if [[ -d firmware ]]; then
-            tar -zcf redmik20_sm7150_firmware.tar.gz firmware
+            tar -zcf redmik20_sm7150_firmware.tar.gz redmik20-firmware
             echo "固件压缩包已创建"
             ls -lh redmik20_sm7150_firmware.tar.gz
-          else
-            echo "警告: firmware 目录不存在，跳过固件压缩"
-          fi
+
 
       - name: Upload Kernel to Release
         uses: ncipollo/release-action@v1
