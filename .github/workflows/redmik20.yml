@@ -252,7 +252,7 @@ jobs:
           
           # 创建 FAT32 文件系统镜像
           echo "创建 FAT32 文件系统镜像..."
-          dd if=/dev/zero of=boot.img bs=1M count=128
+          dd if=/dev/zero of=boot.img bs=1M count=256
           mkfs.fat -F32 -S 4096 -s 1 -f 1 -h 0 -n "pmOS_boot" boot.img
           
           # 挂载并复制文件
