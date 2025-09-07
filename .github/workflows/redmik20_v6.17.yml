@@ -122,10 +122,13 @@ jobs:
       
       - name: Prepare chroot directories
         run: |
-          sudo mkdir -p /mnt/chroot/lib/modules
+          sudo mkdir -p /mnt/chroot/usr/lib/modules
           sudo mkdir -p /mnt/chroot/usr/src
-          sudo cp -a ${{ env.modules_path }}/${{ env.kernel_main_version }} /mnt/chroot/lib/modules/
+          sudo mkdir -p /mnt/chroot/usr/share
+          sudo cp -a ${{ env.modules_path }}/${{ env.kernel_main_version }} /mnt/chroot/usr/lib/modules/
           sudo cp -a ${{ env.src_path }}/linux-headers-${{ env.kernel_main_version }}   /mnt/chroot/usr/src/
+          sudo cp -a ${{ env.src_path }}/redmik20-firmware/firmware  /mnt/chroot/usr/lib/
+          sudo cp -a ${{ env.src_path }}/qcom   /mnt/chroot/usr/share/
       
       - name: Install chroot dependencies
         run: |
@@ -168,6 +171,7 @@ jobs:
           echo "正在生成 initrd.img-${{ env.kernel_main_version }}"
           [[ -f "/etc/initramfs-tools/update-initramfs.conf" ]] && sed -i "s|^update_initramfs=.*|update_initramfs=no|g" /etc/initramfs-tools/update-initramfs.conf
           [[ -f "/etc/initramfs-tools/initramfs.conf" ]] && sed -i "s|^COMPRESS=.*|COMPRESS=gzip|g"   /etc/initramfs-tools/initramfs.conf
+          [[ -f "/etc/initramfs-tools/initramfs.conf" ]] && sed -i '$a  FILES="/usr/lib/firmware/qcom/sm7150/xiaomi/davinci/a615_zap.mbn /usr/lib/firmware/qcom/sm7150/xiaomi/davinci/ipa_fws.mbn"'  /etc/initramfs-tools/initramfs.conf
           update-initramfs -c -k  ${{ env.kernel_main_version }}
           echo "正在生成 uInitrd-${{ env.kernel_main_version }}"
           if ! /usr/bin/mkimage -A arm64 -O linux -T ramdisk -C gzip -a 0 -e 0 -n uInitrd \
