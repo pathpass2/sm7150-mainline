@@ -35,7 +35,8 @@
 	 * Xiaomi Mi 9T
 	 * Xiaomi Redmi K20
 	 */
-	model = "Xiaomi Mi 9T";
+//	model = "Xiaomi Mi 9T";
+	model = "Redmi K20 Snapdragon-730";
 	compatible = "xiaomi,davinci", "qcom,sm7150";
 
 	qcom,board-id = <40 0>;
