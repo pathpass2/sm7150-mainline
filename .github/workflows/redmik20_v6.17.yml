@@ -122,12 +122,12 @@ jobs:
       
       - name: Prepare chroot directories
         run: |
-          sudo mkdir -p /mnt/chroot/lib/modules
+          sudo mkdir -p /mnt/chroot/usr/lib/modules
           sudo mkdir -p /mnt/chroot/usr/src
           sudo mkdir -p /mnt/chroot/usr/share
-          sudo cp -a ${{ env.modules_path }}/${{ env.kernel_main_version }} /mnt/chroot/lib/modules/
+          sudo cp -a ${{ env.modules_path }}/${{ env.kernel_main_version }} /mnt/chroot/usr/lib/modules/
           sudo cp -a ${{ env.src_path }}/linux-headers-${{ env.kernel_main_version }}   /mnt/chroot/usr/src/
-          sudo cp -a ${{ env.src_path }}/redmik20-firmware/firmware  /mnt/chroot/lib/
+          sudo cp -a ${{ env.src_path }}/redmik20-firmware/firmware  /mnt/chroot/usr/lib/
           sudo cp -a ${{ env.src_path }}/qcom   /mnt/chroot/usr/share/
       
       - name: Install chroot dependencies
