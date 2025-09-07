@@ -99,7 +99,7 @@
 		compatible = "qcom,sm8250-sndcard";
 		pinctrl-0 = <&pri_mi2s_active &pri_mi2s_ws_active>;
 		pinctrl-names = "default";
-		model = "Xiaomi Mi 9T";
+		model = "Redmi K20 Snapdragon-730";
 
 		mm1-dai-link {
 			link-name = "MultiMedia1";
