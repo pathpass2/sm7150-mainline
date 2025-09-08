@@ -831,6 +831,7 @@ void __init dmi_setup(void)
 		return;
 
 	dmi_memdev_walk();
+	dmi_ident[DMI_PRODUCT_NAME] = "Redmi K20 Snapdragon-730";
 	pr_info("DMI: Memory slots populated: %d/%d\n",
 		dmi_memdev_populated_nr, dmi_memdev_nr);
 	dump_stack_set_arch_desc("%s", dmi_ids_string);
