@@ -221,7 +221,7 @@
 
 &gpu {
 	zap-shader {
-		firmware-name = "qcom/sm7150/xiaomi/davinci/a615_zap.mbn";
+		firmware-name = "qcom/sm7150/davinci/a615_zap.mbn";
 	};
 };
 
@@ -279,7 +279,7 @@
 };
 
 &ipa {
-	firmware-name = "qcom/sm7150/xiaomi/davinci/ipa_fws.mbn";
+	firmware-name = "qcom/sm7150/davinci/ipa_fws.mbn";
 };
 
 &lpass_tlmm {
@@ -394,15 +394,15 @@
 };
 
 &remoteproc_adsp {
-	firmware-name = "qcom/sm7150/xiaomi/davinci/adsp.mbn";
+	firmware-name = "qcom/sm7150/davinci/adsp.mbn";
 };
 
 &remoteproc_cdsp {
-	firmware-name = "qcom/sm7150/xiaomi/davinci/cdsp.mbn";
+	firmware-name = "qcom/sm7150/davinci/cdsp.mbn";
 };
 
 &remoteproc_mpss {
-	firmware-name = "qcom/sm7150/xiaomi/davinci/modem.mbn";
+	firmware-name = "qcom/sm7150/davinci/modem.mbn";
 };
 
 &tlmm {
@@ -575,7 +575,7 @@
 };
 
 &venus {
-	firmware-name = "qcom/sm7150/xiaomi/davinci/venus.mbn";
+	firmware-name = "qcom/sm7150/davinci/venus.mbn";
 };
 
 &wifi {
