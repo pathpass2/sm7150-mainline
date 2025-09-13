@@ -100,7 +100,9 @@ jobs:
       
       - name: Compression modules
         run: |
-          cd  ${{ env.modules_path }}
+          cd  ${{ env.modules_path }}/${{ env.kernel_main_version }}
+          rm -rf build  && ln -s /usr/src/linux-headers-${{ env.kernel_main_version }}  build
+          cd ${{ env.modules_path }}/
           tar -zcf ${{ env.kernel_main_version }}-modules.tar.gz   ${{ env.kernel_main_version }}
           mv ${{ env.kernel_main_version }}-modules.tar.gz  ${{ env.armbian_path }}/
       
