@@ -579,7 +579,6 @@
 };
 
 &wifi {
-	status = "okay";
 	qcom,ath10k-calibration-variant = "xiaomi_davinci";
 };
 &uart8 {
